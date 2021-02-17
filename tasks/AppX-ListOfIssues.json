@@ -1,0 +1,170 @@
+[
+{
+	"resource": "AppX/src/main/java/appx/db/MusicianAccess.java",
+	"owner": "_generated_diagnostic_collection_name_#0",
+	"severity": 8,
+	"message": "Resource Leak: This line of code contains a resource that might not be closed properly. This can cause a resource leak that slows down or crashes your system.\nFix: Consider closing the following resource: fileOut. The resource is referenced at line 164. The resource is closed at line 193. There are other execution paths that do not contain closure statements, for example, when Writer.append (in method write) throws an exception. Ensure fileOut is closed in a try-finally block or declared in a try-with-resources block.\nMore info: [View resource management guidelines at oracle.com](https://www.oracle.com/technetwork/articles/java/trywithresources-401775.html) (external link).",
+	"source": "TOOL",
+	"startLineNumber": 144,
+	"startColumn": 13,
+	"endLineNumber": 144,
+	"endColumn": 71,
+	"relatedInformation": [
+		{
+			"startLineNumber": 144,
+			"startColumn": 13,
+			"endLineNumber": 144,
+			"endColumn": 71,
+			"message": "FileOutputStream fileOut = new FileOutputStream(fileName); (Code Snippet)",
+			"resource": "AppX/src/main/java/appx/db/MusicianAccess.java"
+		}
+	]
+},
+{
+	"resource": "AppX/src/main/java/appx/db/MusicianAccess.java",
+	"owner": "_generated_diagnostic_collection_name_#0",
+	"severity": 8,
+	"message": "Common Coding Best Practice:  InterruptedException is ignored. This can delay thread shutdown and clear the thread’s interrupt status. Only code that implements a thread’s interruption policy can swallow an interruption request.\nFix: Rethrow the InterruptedException or reinterrupt the current thread using Thread.currentThread().interrupt() so that higher-level interrupt handlers can function correctly.\n If you are wrapping the InterruptedException inside a RuntimeException, call Thread.currentThread().interrupt() before throwing the RuntimeException.\nLearn more about [interrupts](https://docs.oracle.com/javase/tutorial/essential/concurrency/interrupt.html) and [dealing with InterruptedException](https://www.ibm.com/developerworks/java/library/j-jtp05236/index.html?ca=drs-#N10187)",
+	"source": "TOOL",
+	"startLineNumber": 173,
+	"startColumn": 9,
+	"endLineNumber": 173,
+	"endColumn": 43,
+	"relatedInformation": [
+		{
+			"startLineNumber": 173,
+			"startColumn": 9,
+			"endLineNumber": 173,
+			"endColumn": 43,
+			"message": "} catch (InterruptedException e) { (Code Snippet)",
+			"resource": "AppX/src/main/java/appx/db/MusicianAccess.java"
+		}
+	]
+},
+{
+	"resource": "AppX/src/main/java/appx/db/MusicianAccess.java",
+	"owner": "_generated_diagnostic_collection_name_#0",
+	"severity": 4,
+	"message": "AWS Best Practice: This code might not produce accurate results if the operation returns paginated results instead of all results. Consider adding another call to check for additional results.",
+	"source": "TOOL",
+	"startLineNumber": 162,
+	"startColumn": 17,
+	"endLineNumber": 162,
+	"endColumn": 77,
+	"relatedInformation": [
+		{
+			"startLineNumber": 162,
+			"startColumn": 17,
+			"endLineNumber": 162,
+			"endColumn": 77,
+			"message": "QueryResult response = ClientUtils.getDBB().query(queryReq); (Code Snippet)",
+			"resource": "AppX/src/main/java/appx/db/MusicianAccess.java"
+		}
+	]
+},
+{
+	"resource": "AppX/src/main/java/appx/serialize/SimpleQuery.java",
+	"owner": "_generated_diagnostic_collection_name_#0",
+	"severity": 8,
+	"message": "Input Validation:  This line of code lacks validation when processing input data through the following parameter: 'attrName' (index: 1 | type: String). The parameter is exposed to external callers, because its enclosing class and method are publicly accessible. This means that upstream validation, if it exists, can be bypassed. Other validated parameters: 'ddbResponse'. The same parameter type is validated here for example: src/main/java/appx/db/MusicianAccess.java:90. Malicious, malformed, or unbounded inputs can cause unexpected runtime behavior or crashes, and can slow performance.\nFix:\n Add checks to ensure the validity of the parameter's value, such as testing it for nullness (for example, using the @NonNull annotation as [described in the Lombok library](https://projectlombok.org/features/NonNull)), emptiness, or equality. Or to prevent direct calls to it, reduce the method's visibility.\nLearn more about potential threats and guidance from the [Common Weakness Enumeration website](https://cwe.mitre.org/data/definitions/693.html) and the [OWASP Cheat Sheet series](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html).",
+	"source": "TOOL",
+	"startLineNumber": 28,
+	"startColumn": 9,
+	"endLineNumber": 28,
+	"endColumn": 113,
+	"relatedInformation": [
+		{
+			"startLineNumber": 28,
+			"startColumn": 9,
+			"endLineNumber": 28,
+			"endColumn": 113,
+			"message": "final List<String> values = items.stream().map(attributeValueMap -> attributeValueMap.get(attrName).s()) (Code Snippet)",
+			"resource": "AppX/src/main/java/appx/serialize/SimpleQuery.java"
+		}
+	]
+},
+{
+	"resource": "AppX/src/main/java/appx/utils/ThreadRunner.java",
+	"owner": "_generated_diagnostic_collection_name_#0",
+	"severity": 8,
+	"message": "Concurrency Issue:   \n You are using a `ConcurrentHashMap`, but your usage of `containsKey()` and `remove()` may not be thread-safe at lines: 82 and 83. Two threads can perform this same check at the same time and the second thread to call `remove()` will get `null`. This `null` may be used at line: 83.\nFix  \n Consider calling `remove()`, checking instead of your current check if the returned object is `null`, and only then using that object.",
+	"source": "TOOL",
+	"startLineNumber": 82,
+	"startColumn": 9,
+	"endLineNumber": 82,
+	"endColumn": 51,
+	"relatedInformation": [
+		{
+			"startLineNumber": 82,
+			"startColumn": 9,
+			"endLineNumber": 82,
+			"endColumn": 51,
+			"message": "if (currentExceptions.containsKey(adID)) { (Code Snippet)",
+			"resource": "AppX/src/main/java/appx/utils/ThreadRunner.java"
+		}
+	]
+},
+{
+	"resource": "AppX/src/main/java/appx/db/TableStatusUtils.java",
+	"owner": "_generated_diagnostic_collection_name_#0",
+	"severity": 4,
+	"message": "AWS Best Practice: This code appears to be waiting for a resource before it runs. You could use the waiters feature to help improve efficiency. Consider using TableExists or TableNotExists. For more information, see [https://aws.amazon.com/blogs/developer/waiters-in-the-aws-sdk-for-java/](https://aws.amazon.com/blogs/developer/waiters-in-the-aws-sdk-for-java/)",
+	"source": "TOOL",
+	"startLineNumber": 32,
+	"startColumn": 13,
+	"endLineNumber": 32,
+	"endColumn": 64,
+	"relatedInformation": [
+		{
+			"startLineNumber": 32,
+			"startColumn": 13,
+			"endLineNumber": 32,
+			"endColumn": 64,
+			"message": "DescribeTableResult describe = ClientUtils.getDBB() (Code Snippet)",
+			"resource": "AppX/src/main/java/appx/db/TableStatusUtils.java"
+		}
+	]
+},
+{
+	"resource": "AppX/src/main/java/appx/utils/JsonUtils.java",
+	"owner": "_generated_diagnostic_collection_name_#0",
+	"severity": 4,
+	"message": "Code Clone: Similar code fragments were detected in the same file at the following lines: 23:42, 53:73.  \nRefactoring can help improve code maintainability. Consider reducing duplicate code by extracting it into a separate method. You can then replace duplicated code with calls to this new method.",
+	"source": "TOOL",
+	"startLineNumber": 23,
+	"startColumn": 9,
+	"endLineNumber": 23,
+	"endColumn": 36,
+	"relatedInformation": [
+		{
+			"startLineNumber": 23,
+			"startColumn": 9,
+			"endLineNumber": 23,
+			"endColumn": 36,
+			"message": "if (musicians.size() > 0) { (Code Snippet)",
+			"resource": "AppX/src/main/java/appx/utils/JsonUtils.java"
+		}
+	]
+},
+{
+	"resource": "AppX/src/main/java/appx/utils/JsonUtils.java",
+	"owner": "_generated_diagnostic_collection_name_#0",
+	"severity": 4,
+	"message": "Common Coding Best Practice: This code uses '%s' to format int: 'size' expression. This is a potential locale-sensitive handling issue. It might cause errors in the handling and processing of the statement at line: 25. Consider formatting this data with '%d' instead.",
+	"source": "TOOL",
+	"startLineNumber": 25,
+	"startColumn": 13,
+	"endLineNumber": 25,
+	"endColumn": 101,
+	"relatedInformation": [
+		{
+			"startLineNumber": 25,
+			"startColumn": 13,
+			"endLineNumber": 25,
+			"endColumn": 101,
+			"message": "log.info(String.format(\"Number of musicians that are queried =  %s\", musicians.size())); (Code Snippet)",
+			"resource": "AppX/src/main/java/appx/utils/JsonUtils.java"
+		}
+	]
+}
+]

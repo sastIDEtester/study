@@ -1,0 +1,173 @@
+[
+{
+	"resource": "AppY/src/main/java/appy/storage/LogOperations.java",
+	"owner": "_generated_diagnostic_collection_name_#0",
+	"severity": 8,
+	"message": "Input Validation:  This line of code lacks validation when processing input data through the following parameter: 'bucketName' (index: 0 | type: String). The parameter is exposed to external callers, because its enclosing class and method are publicly accessible. This means that upstream validation, if it exists, can be bypassed. Other validated parameters: 'keyword'. The same parameter type is validated here for example: src/main/java/appy/storage/CreateBucket.java:41. Malicious, malformed, or unbounded inputs can cause unexpected runtime behavior or crashes, and can slow performance.\nFix:\n Add checks to ensure the validity of the parameter's value, such as testing it for nullness (for example, using the @NonNull annotation as [described in the Lombok library](https://projectlombok.org/features/NonNull)), emptiness, or equality. Or to prevent direct calls to it, reduce the method's visibility.\nLearn more about potential threats and guidance from the [Common Weakness Enumeration website](https://cwe.mitre.org/data/definitions/693.html) and the [OWASP Cheat Sheet series](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html).",
+	"source": "TOOL",
+	"startLineNumber": 24,
+	"startColumn": 9,
+	"endLineNumber": 24,
+	"endColumn": 59,
+	"relatedInformation": [
+		{
+			"startLineNumber": 24,
+			"startColumn": 9,
+			"endLineNumber": 24,
+			"endColumn": 59,
+			"message": "ObjectListing result = s3.listObjects(bucketName); (Code Snippet)",
+			"resource": "AppY/src/main/java/appy/storage/LogOperations.java"
+		}
+	]
+},
+{
+	"resource": "AppY/src/main/java/appy/storage/LogOperations.java",
+	"owner": "_generated_diagnostic_collection_name_#0",
+	"severity": 4,
+	"message": "AWS Best Practice: This code might not produce accurate results if the operation returns paginated results instead of all results. Consider adding another call to check for additional results.",
+	"source": "TOOL",
+	"startLineNumber": 24,
+	"startColumn": 9,
+	"endLineNumber": 24,
+	"endColumn": 59,
+	"relatedInformation": [
+		{
+			"startLineNumber": 24,
+			"startColumn": 9,
+			"endLineNumber": 24,
+			"endColumn": 59,
+			"message": "ObjectListing result = s3.listObjects(bucketName); (Code Snippet)",
+			"resource": "AppY/src/main/java/appy/storage/LogOperations.java"
+		}
+	]
+},
+{
+	"resource": "AppY/src/main/java/appy/storage/LogOperations.java",
+	"owner": "_generated_diagnostic_collection_name_#0",
+	"severity": 4,
+	"message": "AWS Best Practice: This code uses an outdated API. [ListObjectsV2 is the revised List Objects API, and we recommend you use this revised API for new application developments](https://docs.aws.amazon.com/AmazonS3/latest/API/v2-RESTBucketGET.html).",
+	"source": "TOOL",
+	"startLineNumber": 24,
+	"startColumn": 9,
+	"endLineNumber": 24,
+	"endColumn": 59,
+	"relatedInformation": [
+		{
+			"startLineNumber": 24,
+			"startColumn": 9,
+			"endLineNumber": 24,
+			"endColumn": 59,
+			"message": "ObjectListing result = s3.listObjects(bucketName); (Code Snippet)",
+			"resource": "AppY/src/main/java/appy/storage/LogOperations.java"
+		}
+	]
+},
+{
+	"resource": "AppY/src/main/java/appy/storage/S3FileHandler.java",
+	"owner": "_generated_diagnostic_collection_name_#0",
+	"severity": 8,
+	"message": "Resource Leak: This line of code might contain a resource leak. Resource leaks can cause your system to slow down or crash.\nFix: Consider closing the following resource: fos. Execution paths that do not contain closure statements were detected. Ensure fos is closed in a try-finally block or declared in a try-with-resources block.\nMore info: [View resource management guidelines at oracle.com](https://www.oracle.com/technetwork/articles/java/trywithresources-401775.html) (external link).",
+	"source": "TOOL",
+	"startLineNumber": 30,
+	"startColumn": 17,
+	"endLineNumber": 30,
+	"endColumn": 81,
+	"relatedInformation": [
+		{
+			"startLineNumber": 30,
+			"startColumn": 17,
+			"endLineNumber": 30,
+			"endColumn": 81,
+			"message": "FileOutputStream fos = new FileOutputStream(new File(fileName)); (Code Snippet)",
+			"resource": "AppY/src/main/java/appy/storage/S3FileHandler.java"
+		}
+	]
+},
+{
+	"resource": "AppY/src/main/java/appy/storage/S3FileHandler.java",
+	"owner": "_generated_diagnostic_collection_name_#0",
+	"severity": 8,
+	"message": "Common Coding Best Practice:  While wrapping the caught exception into a custom one, information about the caught exception is being lost, including information about the stack trace of the exception.\nFix: If the caught exception object does not contain sensitive information, consider passing it as the \"rootCause\" or inner exception parameter to the constructor of the new exception before throwing the new exception. (Note that not all exception constructors support inner exceptions. Use a wrapper exception that supports inner exceptions.) \n[Learn more](https://www.ibm.com/support/pages/best-practice-catching-and-re-throwing-java-exceptions)",
+	"source": "TOOL",
+	"startLineNumber": 52,
+	"startColumn": 9,
+	"endLineNumber": 52,
+	"endColumn": 34,
+	"relatedInformation": [
+		{
+			"startLineNumber": 52,
+			"startColumn": 9,
+			"endLineNumber": 52,
+			"endColumn": 34,
+			"message": "} catch (IOException e) { (Code Snippet)",
+			"resource": "AppY/src/main/java/appy/storage/S3FileHandler.java"
+		}
+	]
+},
+{
+	"resource": "AppY/src/main/java/appy/storage/S3FileHandler.java",
+	"owner": "_generated_diagnostic_collection_name_#0",
+	"severity": 4,
+	"message": "Code Clone: Similar code fragments were detected in the same file at the following lines: 38:47, 73:82.  \nRefactoring can help improve code maintainability. Consider reducing duplicate code by extracting it into a separate method. You can then replace duplicated code with calls to this new method.",
+	"source": "TOOL",
+	"startLineNumber": 38,
+	"startColumn": 13,
+	"endLineNumber": 38,
+	"endColumn": 64,
+	"relatedInformation": [
+		{
+			"startLineNumber": 38,
+			"startColumn": 13,
+			"endLineNumber": 38,
+			"endColumn": 64,
+			"message": "if (e.getStatusCode() == HttpStatus.SC_FORBIDDEN) { (Code Snippet)",
+			"resource": "AppY/src/main/java/appy/storage/S3FileHandler.java"
+		}
+	]
+},
+{
+	"resource": "AppY/src/main/java/appy/storage/SearchInLogs.java",
+	"owner": "_generated_diagnostic_collection_name_#0",
+	"severity": 8,
+	"message": "Concurrency Issue:   \n You are using a `ConcurrentHashMap`, but your usage of `containsKey()` and `put()` may not be thread-safe at lines: 31 and 36. Two threads can perform this same check at the same time and one thread can overwrite the value written by the other thread.\nFix  \n Consider replacing `put()` with `putIfAbsent()` to help prevent accidental overwriting. `putIfAbsent()` puts the value only if the `ConcurrentHashMap` does not contain the key and therefore avoids overwriting the value written there by the other thread's `putIfAbsent()`.\nMore info  \n `putIfAbsent()` returns `null` if the value did not exist and returns the value in the map if one already exists.\n [View an example on GitHub](https://github.com/apache/hadoop/blob/f16cf877e565084c66bc63605659b157c4394dc8/hadoop-hdfs-project/hadoop-hdfs/src/main/java/org/apache/hadoop/hdfs/server/namenode/startupprogress/StartupProgress.java#L272-L273) (external link).",
+	"source": "TOOL",
+	"startLineNumber": 31,
+	"startColumn": 9,
+	"endLineNumber": 31,
+	"endColumn": 44,
+	"relatedInformation": [
+		{
+			"startLineNumber": 31,
+			"startColumn": 9,
+			"endLineNumber": 31,
+			"endColumn": 44,
+			"message": "if (results.containsKey(keyword)) { (Code Snippet)",
+			"resource": "AppY/src/main/java/appy/storage/SearchInLogs.java"
+		}
+	]
+},
+{
+	"resource": "AppY/src/main/java/appy/storage/SearchInLogs.java",
+	"owner": "_generated_diagnostic_collection_name_#0",
+	"severity": 4,
+	"message": "Common Coding Best Practice: This code uses '%s' to format int: 'size' expression. This is a potential locale-sensitive handling issue. It might cause errors in the handling and processing of the statement at line: 72. Consider formatting this data with '%d' instead.",
+	"source": "TOOL",
+	"startLineNumber": 72,
+	"startColumn": 9,
+	"endLineNumber": 72,
+	"endColumn": 86,
+	"relatedInformation": [
+		{
+			"startLineNumber": 72,
+			"startColumn": 9,
+			"endLineNumber": 72,
+			"endColumn": 86,
+			"message": "System.out.println(String.format(\"Number of results =  %s\", results.size())); (Code Snippet)",
+			"resource": "AppY/src/main/java/appy/storage/SearchInLogs.java"
+		}
+	]
+}
+]
+
+
+
